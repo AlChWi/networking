@@ -64,6 +64,23 @@ class NetworkManager {
             
         }.resume()
     }
+    
+    func getPosts(byId userId: Int, completionHandler: @escaping ([Post]) -> Void) {
+        guard let url = URL(string: baseURL + APIs.posts.rawValue)
+            else {return}
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        components?.queryItems = [URLQueryItem(name: "userId", value: "\(userId)")]
+        guard let queryURL = components?.url else {return}
+        URLSession.shared.dataTask(with: queryURL) { (data, response, error) in
+            if error != nil {
+                print("error get post by")
+            } else if let resp = response as? HTTPURLResponse, resp.statusCode == 200,  let recievedData = data {
+                let posts = try? JSONDecoder().decode([Post].self, from: recievedData)
+                completionHandler(posts ?? [])
+            }
+        }
+    }
+    
     func getCommentsForPost(_ postId: Int, _ completionHandler: @escaping ([Comment]) -> Void) {
         if let url = URL(string: "https://jsonplaceholder.typicode.com/comments?postId=\(String(postId))") {
             print(url)
