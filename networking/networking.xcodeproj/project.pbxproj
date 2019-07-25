@@ -36,15 +36,15 @@
 		9BAC37B822E6219A00705096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BAC37BE22E627EC00705096 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9BAC37C022E632A400705096 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		9BAC37C222E90AF600705096 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = ../TableViewCell.swift; sourceTree = "<group>"; };
-		9BAC37C322E90AF600705096 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TableViewCell.xib; path = ../TableViewCell.xib; sourceTree = "<group>"; };
+		9BAC37C222E90AF600705096 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		9BAC37C322E90AF600705096 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		9BAC37C622E912E100705096 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		9BAC37C822E9196300705096 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommentsTableViewCell.swift; path = ../CommentsTableViewCell.swift; sourceTree = "<group>"; };
-		9BAC37C922E9196300705096 /* CommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CommentsTableViewCell.xib; path = ../CommentsTableViewCell.xib; sourceTree = "<group>"; };
+		9BAC37C822E9196300705096 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		9BAC37C922E9196300705096 /* CommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsTableViewCell.xib; sourceTree = "<group>"; };
 		9BAC37CE22E9D0A900705096 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		9BAC37D022E9D75A00705096 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
-		9BAC37D222E9D80300705096 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UsersTableViewCell.swift; path = ../UsersTableViewCell.swift; sourceTree = "<group>"; };
-		9BAC37D322E9D80300705096 /* UsersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UsersTableViewCell.xib; path = ../UsersTableViewCell.xib; sourceTree = "<group>"; };
+		9BAC37D222E9D80300705096 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
+		9BAC37D322E9D80300705096 /* UsersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersTableViewCell.xib; sourceTree = "<group>"; };
 		9BAC37D622E9D9D700705096 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,8 +80,8 @@
 			children = (
 				9BAC37AC22E6219900705096 /* AppDelegate.swift */,
 				9BAC37C022E632A400705096 /* NetworkManager.swift */,
+				9BAC37DD22E9F2E500705096 /* View */,
 				9BAC37DB22E9EE1600705096 /* Controllers */,
-				9BAC37DA22E9ED6700705096 /* View */,
 				9BAC37DC22E9EE3000705096 /* Model */,
 				9BAC37B022E6219900705096 /* Main.storyboard */,
 				9BAC37B322E6219A00705096 /* Assets.xcassets */,
@@ -89,19 +89,6 @@
 				9BAC37B822E6219A00705096 /* Info.plist */,
 			);
 			path = networking;
-			sourceTree = "<group>";
-		};
-		9BAC37DA22E9ED6700705096 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				9BAC37D322E9D80300705096 /* UsersTableViewCell.xib */,
-				9BAC37D222E9D80300705096 /* UsersTableViewCell.swift */,
-				9BAC37C922E9196300705096 /* CommentsTableViewCell.xib */,
-				9BAC37C822E9196300705096 /* CommentsTableViewCell.swift */,
-				9BAC37C222E90AF600705096 /* TableViewCell.swift */,
-				9BAC37C322E90AF600705096 /* TableViewCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		9BAC37DB22E9EE1600705096 /* Controllers */ = {
@@ -122,6 +109,19 @@
 				9BAC37D622E9D9D700705096 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9BAC37DD22E9F2E500705096 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9BAC37D222E9D80300705096 /* UsersTableViewCell.swift */,
+				9BAC37C922E9196300705096 /* CommentsTableViewCell.xib */,
+				9BAC37C822E9196300705096 /* CommentsTableViewCell.swift */,
+				9BAC37C222E90AF600705096 /* TableViewCell.swift */,
+				9BAC37C322E90AF600705096 /* TableViewCell.xib */,
+				9BAC37D322E9D80300705096 /* UsersTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
