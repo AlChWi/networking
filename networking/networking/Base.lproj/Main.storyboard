@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xrF-iJ-eHC">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,50 +10,169 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--posts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="networking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="posts" id="BYZ-38-t0r" customClass="ViewController" customModule="networking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="64G-nf-g5H">
-                                <rect key="frame" x="152.5" y="400.5" width="109" height="105"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTP-8d-TGZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="download posts">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="downloadPostsDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t2b-EY-HAv"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIy-Eb-8Uz">
-                                        <rect key="frame" x="33.5" y="75" width="42" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTP-8d-TGZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ca5-6G-K1W"/>
+                                </constraints>
+                                <state key="normal" title="download posts">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadPostsDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t2b-EY-HAv"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W6H-XT-cg8">
+                                <rect key="frame" x="0.0" y="128" width="414" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="64G-nf-g5H" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="T90-Wt-PtX"/>
-                            <constraint firstItem="64G-nf-g5H" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Vc8-Ta-TUR"/>
+                            <constraint firstItem="W6H-XT-cg8" firstAttribute="top" secondItem="tTP-8d-TGZ" secondAttribute="bottom" id="MbI-Go-ZqR"/>
+                            <constraint firstItem="W6H-XT-cg8" firstAttribute="top" secondItem="tTP-8d-TGZ" secondAttribute="bottom" id="Ssd-Ri-EpE"/>
+                            <constraint firstAttribute="bottom" secondItem="W6H-XT-cg8" secondAttribute="bottom" id="Z8w-hy-FKs"/>
+                            <constraint firstItem="tTP-8d-TGZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gRV-Zd-wGU"/>
+                            <constraint firstItem="tTP-8d-TGZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mJ3-Wr-nGO"/>
+                            <constraint firstItem="tTP-8d-TGZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rkL-u3-TPE"/>
+                            <constraint firstItem="W6H-XT-cg8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tsI-Uf-QbI"/>
+                            <constraint firstItem="W6H-XT-cg8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x87-sh-oM9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Posts" id="9xk-Jw-6Ql">
+                        <barButtonItem key="backBarButtonItem" title="Posts" id="MPA-CO-elD"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="titleLabel" destination="WIy-Eb-8Uz" id="9mx-qU-COt"/>
+                        <outlet property="postsTableView" destination="W6H-XT-cg8" id="57j-4y-RM5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="100.44642857142857"/>
+            <point key="canvasLocation" x="1957.9710144927537" y="100.44642857142857"/>
+        </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="9gQ-XP-X0n">
+            <objects>
+                <viewController storyboardIdentifier="CommentsVCId" id="lHW-xZ-q7j" customClass="CommentsViewController" customModule="networking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yt1-07-7GR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gVg-6O-5lQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2Tg-c0-Gbv"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentsTableView" destination="gVg-6O-5lQ" id="ZYF-Pc-vbu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GhM-de-bwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2847.826086956522" y="109.82142857142857"/>
+        </scene>
+        <!--Posts-->
+        <scene sceneID="zn0-AZ-tvQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iyi-IF-LyD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Posts" id="Ed6-Oq-Uca"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tst-B2-bwy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="AN1-rJ-Xiu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I36-d9-pna" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="100.44642857142857"/>
+        </scene>
+        <!--Users-->
+        <scene sceneID="OUz-wa-VFi">
+            <objects>
+                <viewController id="wu5-eo-WE9" customClass="UsersViewController" customModule="networking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J0W-DH-N4d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="emh-2d-kLA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="emh-2d-kLA" firstAttribute="leading" secondItem="WYN-YX-AJ4" secondAttribute="leading" id="PlE-0r-Qne"/>
+                            <constraint firstAttribute="bottom" secondItem="emh-2d-kLA" secondAttribute="bottom" id="UzM-UH-LfU"/>
+                            <constraint firstItem="emh-2d-kLA" firstAttribute="trailing" secondItem="WYN-YX-AJ4" secondAttribute="trailing" id="W6Q-z6-vIL"/>
+                            <constraint firstItem="emh-2d-kLA" firstAttribute="top" secondItem="WYN-YX-AJ4" secondAttribute="top" id="hm6-4W-71t"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WYN-YX-AJ4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Users" id="fb4-Uu-ekZ">
+                        <barButtonItem key="backBarButtonItem" title="Users" id="K9m-um-hQ1"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="usersTableView" destination="emh-2d-kLA" id="Lat-Vp-uZc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sbc-zN-tKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957.9710144927537" y="799.55357142857144"/>
+        </scene>
+        <!--Users-->
+        <scene sceneID="07P-50-Gfv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TaT-dU-Qlg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Users" id="Cpv-MS-Kgs"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sj1-a0-Ki5">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wu5-eo-WE9" kind="relationship" relationship="rootViewController" id="Ksp-3y-6xY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iAz-2K-CQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="799.55357142857144"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="vhB-nJ-ZpG">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xrF-iJ-eHC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ccj-Cj-JXa">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Iyi-IF-LyD" kind="relationship" relationship="viewControllers" id="wFw-V1-CF2"/>
+                        <segue destination="TaT-dU-Qlg" kind="relationship" relationship="viewControllers" id="m3x-ew-Ea8"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5qm-U1-8U9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="450"/>
         </scene>
     </scenes>
 </document>

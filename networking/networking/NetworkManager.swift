@@ -26,4 +26,41 @@ class NetworkManager {
                 }.resume()
         }
     }
+    func getCommentsForPost(_ postId: Int, _ completionHandler: @escaping ([Comment]) -> Void) {
+        if let url = URL(string: "https://jsonplaceholder.typicode.com/comments?postId=\(String(postId))") {
+            print(url)
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
+                        
+                        print(responseData)
+                        let comments = try? JSONDecoder().decode([Comment].self, from: responseData)
+                        
+                        completionHandler(comments ?? [])
+                    } else {
+                        print((200..<300).contains((response as! HTTPURLResponse).statusCode))
+                    }
+                }
+            }.resume()
+        }
+    }
+    func getAllUsers(_ completionHandler: @escaping ([User]) -> Void) {
+        if let url = URL(string: "https://jsonplaceholder.typicode.com/users") {
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
+                        print(responseData)
+                        let users = try? JSONDecoder().decode([User].self, from: responseData)
+                        print(users)
+                        completionHandler(users ?? [])
+                    }
+                }
+                
+            }.resume()
+        }
+    }
 }
