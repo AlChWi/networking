@@ -13,7 +13,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postDescriptionLabel: UILabel!
     
-    var post: Post?
+    private var post: Post?
     
     func configure(post: Post) {
         self.post = post

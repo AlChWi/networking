@@ -13,7 +13,7 @@ class NetworkManager {
         if let url = URL(string: "https://jsonplaceholder.typicode.com/posts") {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if error != nil {
-                    print("error")
+                    
                 } else {
                     if let resp = response as? HTTPURLResponse, resp.statusCode == 200, let responseData = data {
                         
@@ -31,7 +31,7 @@ class NetworkManager {
             print(url)
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    print(error)
+                    
                 } else {
                     if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
                         
@@ -50,12 +50,11 @@ class NetworkManager {
         if let url = URL(string: "https://jsonplaceholder.typicode.com/users") {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    print(error)
+                    
                 } else {
                     if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
                         print(responseData)
                         let users = try? JSONDecoder().decode([User].self, from: responseData)
-                        print(users)
                         completionHandler(users ?? [])
                     }
                 }

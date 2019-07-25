@@ -14,7 +14,7 @@ class CommentsTableViewCell: UITableViewCell {
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var commentBodyLabel: UILabel!
     
-    var comment: Comment?
+    private var comment: Comment?
     
     func configure(comment: Comment) {
         self.comment = comment

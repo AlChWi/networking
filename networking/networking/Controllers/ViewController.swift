@@ -49,14 +49,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var postId = posts[indexPath.row].id
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommentsVCId") as! CommentsViewController
-        vc.post = posts[indexPath.row]
+        vc.configure(posts[indexPath.row])
         
         self.navigationController?.pushViewController(vc, animated: true)
-//        networkManager.getCommentsForPost(postId) { comments in
-//            
-//        }
     }
     
 }

@@ -19,8 +19,8 @@ class CommentsViewController: UIViewController {
         }
     }
     
-    var post: Post?
-    var comments: [Comment] = []
+    private var post: Post?
+    private var comments: [Comment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,9 @@ class CommentsViewController: UIViewController {
         }
     }
     
-
+    func configure(_ post: Post) {
+        self.post = post
+    }
  
 }
 
