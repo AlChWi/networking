@@ -51,6 +51,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Posts" id="9xk-Jw-6Ql">
                         <barButtonItem key="backBarButtonItem" title="Posts" id="MPA-CO-elD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kNQ-SS-ffD">
+                            <connections>
+                                <action selector="createPostAction:" destination="BYZ-38-t0r" id="eQe-Lq-5cz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="postsTableView" destination="W6H-XT-cg8" id="57j-4y-RM5"/>
@@ -162,6 +167,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xrF-iJ-eHC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ccj-Cj-JXa">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

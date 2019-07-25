@@ -9,8 +9,24 @@
 import Foundation
 
 class NetworkManager {
+    
+    enum HTTPMethods: String {
+        case POST
+        case PUT
+        case GET
+        case DELETE
+    }
+    
+    enum APIs: String {
+        case posts
+        case users
+        case comments
+    }
+    
+    private let baseURL = "https://jsonplaceholder.typicode.com/"
+    
     func getAllPosts(_ completionHandler: @escaping ([Post]) -> Void) {
-        if let url = URL(string: "https://jsonplaceholder.typicode.com/posts") {
+        if let url = URL(string: baseURL + APIs.posts.rawValue) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if error != nil {
                     
@@ -25,6 +41,28 @@ class NetworkManager {
                 }
                 }.resume()
         }
+    }
+    
+    func postCreatePost(_ post: Post, completionHandler: @escaping (Post) -> Void) {
+        guard let url = URL(string: baseURL + APIs.posts.rawValue), let data = try? JSONEncoder().encode(post)
+            else { return }
+        let request = MutableURLRequest(url: url)
+        request.httpMethod = HTTPMethods.POST.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+            if error != nil {
+                print(error)
+            } else if let resp = response as? HTTPURLResponse, resp.statusCode == 201, let responseData = data {
+                let json = try? JSONSerialization.jsonObject(with: responseData)
+                print(json)
+                if let responsePost = try? JSONDecoder().decode(Post.self, from: responseData) {
+                    completionHandler(responsePost)
+                }
+            }
+            
+        }.resume()
     }
     func getCommentsForPost(_ postId: Int, _ completionHandler: @escaping ([Comment]) -> Void) {
         if let url = URL(string: "https://jsonplaceholder.typicode.com/comments?postId=\(String(postId))") {

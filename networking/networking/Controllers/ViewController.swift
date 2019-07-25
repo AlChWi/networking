@@ -11,7 +11,11 @@ import UIKit
 class ViewController: UIViewController {
     
     var networkManager = NetworkManager()
-    private var posts: [Post] = []
+    private var posts: [Post] = [] {
+        didSet {
+            postsTableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var postsTableView: UITableView! {
         didSet {
@@ -27,6 +31,21 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func createPostAction(_ sender: Any) {
+        let post = Post(userId: 1, title: "title", body: "body")
+        networkManager.postCreatePost(post) { (serverPost) in
+            post.id = serverPost.id
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Great!", message: "Your post has been created", preferredStyle: .alert)
+                
+                self.present(alert, animated: true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    alert.dismiss(animated: true)
+                }
+            }
+        }
+    }
     @IBAction func downloadPostsDidTap(_ sender: UIButton) {
         networkManager.getAllPosts() { posts in
             DispatchQueue.main.async {

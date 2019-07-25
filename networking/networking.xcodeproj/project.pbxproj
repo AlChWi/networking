@@ -114,11 +114,11 @@
 		9BAC37DD22E9F2E500705096 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9BAC37D222E9D80300705096 /* UsersTableViewCell.swift */,
-				9BAC37C922E9196300705096 /* CommentsTableViewCell.xib */,
 				9BAC37C822E9196300705096 /* CommentsTableViewCell.swift */,
+				9BAC37C922E9196300705096 /* CommentsTableViewCell.xib */,
 				9BAC37C222E90AF600705096 /* TableViewCell.swift */,
 				9BAC37C322E90AF600705096 /* TableViewCell.xib */,
+				9BAC37D222E9D80300705096 /* UsersTableViewCell.swift */,
 				9BAC37D322E9D80300705096 /* UsersTableViewCell.xib */,
 			);
 			path = View;
