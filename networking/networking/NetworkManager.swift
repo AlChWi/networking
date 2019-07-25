@@ -78,7 +78,7 @@ class NetworkManager {
                 let posts = try? JSONDecoder().decode([Post].self, from: recievedData)
                 completionHandler(posts ?? [])
             }
-        }
+        }.resume()
     }
     
     func getCommentsForPost(_ postId: Int, _ completionHandler: @escaping ([Comment]) -> Void) {
