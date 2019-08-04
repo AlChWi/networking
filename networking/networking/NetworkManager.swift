@@ -39,7 +39,7 @@ class NetworkManager {
                         completionHandler(posts ?? [])
                     }
                 }
-                }.resume()
+            }.resume()
         }
     }
     
@@ -61,7 +61,27 @@ class NetworkManager {
                     completionHandler(responsePost)
                 }
             }
-            
+        }.resume()
+    }
+    
+    func postCreateUser(_ user: User, complitionHandler: @escaping (User) -> Void) {
+        guard let url = URL(string: baseURL + APIs.users.rawValue), let data = try? JSONEncoder().encode(user)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.POST.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error)
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
+                let json = try? JSONSerialization.jsonObject(with: responseData)
+                print(json)
+                if let responseUser = try? JSONDecoder().decode(User.self, from: responseData) {
+                    complitionHandler(responseUser)
+                }
+            }
         }.resume()
     }
     
@@ -81,25 +101,21 @@ class NetworkManager {
         }.resume()
     }
     
-    func getCommentsForPost(_ postId: Int, _ completionHandler: @escaping ([Comment]) -> Void) {
-        if let url = URL(string: "https://jsonplaceholder.typicode.com/comments?postId=\(String(postId))") {
-            print(url)
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error != nil {
-                    
-                } else {
-                    if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
-                        
-                        print(responseData)
-                        let comments = try? JSONDecoder().decode([Comment].self, from: responseData)
-                        
-                        completionHandler(comments ?? [])
-                    } else {
-                        print((200..<300).contains((response as! HTTPURLResponse).statusCode))
-                    }
-                }
-            }.resume()
-        }
+    func getComments(byPostId postId: Int, _ completionHandler: @escaping ([Comment]) -> Void) {
+        guard let url = URL(string: baseURL + APIs.comments.rawValue)
+            else {return}
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        components?.queryItems = [URLQueryItem(name: "postId", value: "\(postId)")]
+        guard let queryURL = components?.url
+            else {return }
+        URLSession.shared.dataTask(with: queryURL) { (data, response, error) in
+            if error != nil {
+                print("error")
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let recievedData = data {
+                let comments = try? JSONDecoder().decode([Comment].self, from: recievedData)
+                completionHandler(comments ?? [])
+            }
+        }.resume()
     }
     func getAllUsers(_ completionHandler: @escaping ([User]) -> Void) {
         if let url = URL(string: "https://jsonplaceholder.typicode.com/users") {

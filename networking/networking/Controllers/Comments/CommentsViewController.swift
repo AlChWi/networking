@@ -20,23 +20,29 @@ class CommentsViewController: UIViewController {
     }
     
     private var post: Post?
-    private var comments: [Comment] = []
+    private var comments: [Comment] = [] {
+        didSet {
+            self.commentsTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Comments"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentAddingScreen))
         
         if let existingPost = post {
-            NetworkManager().getCommentsForPost(existingPost.id) { (comments) in
-                self.comments = comments
+            NetworkManager().getComments(byPostId: existingPost.id) { (comments) in
                 DispatchQueue.main.async {
-                    self.commentsTableView.reloadData()
+                    self.comments = comments
                 }
             }
         }
     }
-    
+    @objc func presentAddingScreen() {
+        
+    }
     func configure(_ post: Post) {
         self.post = post
     }
