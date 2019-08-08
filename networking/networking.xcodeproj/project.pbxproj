@@ -26,6 +26,14 @@
 		9BAC37D522E9D80300705096 /* UsersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAC37D322E9D80300705096 /* UsersTableViewCell.xib */; };
 		9BAC37D722E9D9D700705096 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC37D622E9D9D700705096 /* User.swift */; };
 		9BDE3C9D22F5B4C40033B81E /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE3C9C22F5B4C40033B81E /* PostsViewController.swift */; };
+		FA1ABB3222FA1092003D0048 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB3122FA1092003D0048 /* Constants.swift */; };
+		FA1ABB3422FB47C8003D0048 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB3322FB47C8003D0048 /* PopAnimator.swift */; };
+		FA1ABB3722FB6605003D0048 /* BiggerUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB3522FB6605003D0048 /* BiggerUserTableViewCell.swift */; };
+		FA1ABB3822FB6605003D0048 /* BiggerUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1ABB3622FB6605003D0048 /* BiggerUserTableViewCell.xib */; };
+		FA1ABB3A22FB9301003D0048 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1ABB3922FB9301003D0048 /* NotificationView.xib */; };
+		FA1ABB3C22FB95A2003D0048 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB3B22FB95A2003D0048 /* NotificationView.swift */; };
+		FA1ABB3F22FC66F1003D0048 /* AddingPostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB3E22FC66F1003D0048 /* AddingPostsTableViewController.swift */; };
+		FA1ABB4122FC72D4003D0048 /* AddingCommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB4022FC72D4003D0048 /* AddingCommentsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +58,14 @@
 		9BAC37D322E9D80300705096 /* UsersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersTableViewCell.xib; sourceTree = "<group>"; };
 		9BAC37D622E9D9D700705096 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9BDE3C9C22F5B4C40033B81E /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
+		FA1ABB3122FA1092003D0048 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FA1ABB3322FB47C8003D0048 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		FA1ABB3522FB6605003D0048 /* BiggerUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiggerUserTableViewCell.swift; sourceTree = "<group>"; };
+		FA1ABB3622FB6605003D0048 /* BiggerUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BiggerUserTableViewCell.xib; sourceTree = "<group>"; };
+		FA1ABB3922FB9301003D0048 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		FA1ABB3B22FB95A2003D0048 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		FA1ABB3E22FC66F1003D0048 /* AddingPostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingPostsTableViewController.swift; sourceTree = "<group>"; };
+		FA1ABB4022FC72D4003D0048 /* AddingCommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingCommentsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				9BDE3C9C22F5B4C40033B81E /* PostsViewController.swift */,
+				FA1ABB3E22FC66F1003D0048 /* AddingPostsTableViewController.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -75,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				9BAC37CE22E9D0A900705096 /* CommentsViewController.swift */,
+				FA1ABB4022FC72D4003D0048 /* AddingCommentsTableViewController.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -93,6 +111,8 @@
 			children = (
 				9BAC37C322E90AF600705096 /* TableViewCell.xib */,
 				9BAC37C222E90AF600705096 /* TableViewCell.swift */,
+				FA1ABB3522FB6605003D0048 /* BiggerUserTableViewCell.swift */,
+				FA1ABB3622FB6605003D0048 /* BiggerUserTableViewCell.xib */,
 			);
 			path = PostsTableView;
 			sourceTree = "<group>";
@@ -125,6 +145,8 @@
 		9BAC37AB22E6219900705096 /* networking */ = {
 			isa = PBXGroup;
 			children = (
+				FA1ABB3322FB47C8003D0048 /* PopAnimator.swift */,
+				FA1ABB3122FA1092003D0048 /* Constants.swift */,
 				9BAC37AC22E6219900705096 /* AppDelegate.swift */,
 				9BAC37B022E6219900705096 /* Main.storyboard */,
 				9BAC37C022E632A400705096 /* NetworkManager.swift */,
@@ -162,6 +184,7 @@
 		9BAC37DD22E9F2E500705096 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA1ABB3D22FC524F003D0048 /* NotificationView */,
 				9B8CC4CB22F5CCF800CA7794 /* UsersTableView */,
 				9B8CC4CA22F5CCE800CA7794 /* PostsTableView */,
 				9B8CC4C922F5CCD800CA7794 /* CommentsTableView */,
@@ -176,6 +199,15 @@
 				9B8CC4CC22F5CF7200CA7794 /* AddingUsersTableViewController.swift */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		FA1ABB3D22FC524F003D0048 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				FA1ABB3B22FB95A2003D0048 /* NotificationView.swift */,
+				FA1ABB3922FB9301003D0048 /* NotificationView.xib */,
+			);
+			path = NotificationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,9 +271,11 @@
 				9BAC37B722E6219A00705096 /* LaunchScreen.storyboard in Resources */,
 				9BAC37C522E90AF600705096 /* TableViewCell.xib in Resources */,
 				9BAC37D522E9D80300705096 /* UsersTableViewCell.xib in Resources */,
+				FA1ABB3822FB6605003D0048 /* BiggerUserTableViewCell.xib in Resources */,
 				9BAC37B422E6219A00705096 /* Assets.xcassets in Resources */,
 				9BAC37B222E6219900705096 /* Main.storyboard in Resources */,
 				9BAC37CB22E9196300705096 /* CommentsTableViewCell.xib in Resources */,
+				FA1ABB3A22FB9301003D0048 /* NotificationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,13 +290,19 @@
 				9BAC37C422E90AF600705096 /* TableViewCell.swift in Sources */,
 				9BAC37C722E912E100705096 /* Comment.swift in Sources */,
 				9BAC37C122E632A400705096 /* NetworkManager.swift in Sources */,
+				FA1ABB3422FB47C8003D0048 /* PopAnimator.swift in Sources */,
 				9BAC37BF22E627EC00705096 /* Post.swift in Sources */,
+				FA1ABB3C22FB95A2003D0048 /* NotificationView.swift in Sources */,
+				FA1ABB4122FC72D4003D0048 /* AddingCommentsTableViewController.swift in Sources */,
 				9BAC37D422E9D80300705096 /* UsersTableViewCell.swift in Sources */,
+				FA1ABB3F22FC66F1003D0048 /* AddingPostsTableViewController.swift in Sources */,
 				9BAC37CF22E9D0A900705096 /* CommentsViewController.swift in Sources */,
 				9B8CC4CD22F5CF7200CA7794 /* AddingUsersTableViewController.swift in Sources */,
 				9BAC37CA22E9196300705096 /* CommentsTableViewCell.swift in Sources */,
+				FA1ABB3722FB6605003D0048 /* BiggerUserTableViewCell.swift in Sources */,
 				9BAC37AF22E6219900705096 /* ViewController.swift in Sources */,
 				9BAC37D122E9D75A00705096 /* UsersViewController.swift in Sources */,
+				FA1ABB3222FA1092003D0048 /* Constants.swift in Sources */,
 				9BAC37AD22E6219900705096 /* AppDelegate.swift in Sources */,
 				9BAC37D722E9D9D700705096 /* User.swift in Sources */,
 			);

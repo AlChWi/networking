@@ -23,12 +23,25 @@ class UsersViewController: UIViewController {
             usersTableView.reloadData()
         }
     }
+    private var transition = PopAnimator()
     
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        transition.dismissCompletion = { [weak self] in
+            guard
+                let selectedIndexPathCell = self?.usersTableView.indexPathForSelectedRow,
+                let selectedCell = self?.usersTableView.cellForRow(at: selectedIndexPathCell)
+                    as? UsersTableViewCell
+                else {
+                    return
+            }
+            
+            selectedCell.shadowView.isHidden = false
+        }
+        
         NetworkManager().getAllUsers() { users in
             DispatchQueue.main.async {
                 self.users = users
@@ -75,15 +88,22 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostsVCId") as! PostsViewController
+        let navVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostsNavVCId") as! UINavigationController
+        let vc = navVC.viewControllers[0] as! PostsViewController
+        navVC.transitioningDelegate = self
         vc.configure(users[indexPath.row])
     
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(navVC, animated: true)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            users.remove(at: indexPath.row)
+            NetworkManager().deleteUser(users[indexPath.row]) {
+                DispatchQueue.main.async {
+                    self.users.remove(at: indexPath.row)
+                }
+            }
         }
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -113,23 +133,87 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension UsersViewController: AddingUsersDelegate {
     func addUser(user: User) {
-        NetworkManager().postCreateUser(user) { (user) in
-            DispatchQueue.main.async {
-                self.users.append(user)
+        if let window = UIApplication.shared.keyWindow {
+            let alertView = NotificationView(frame: CGRect(x: UIScreen.main.bounds.width/2, y: -100, width: 50, height: 100))
+            alertView.layer.cornerRadius = 8
+            alertView.layer.masksToBounds = true
+            alertView.configureMessage("Adding user")
+            window.addSubview(alertView)
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: .curveEaseIn,
+                           animations: {
+                            alertView.frame.origin.y = window.safeAreaInsets.top
+                            alertView.frame.origin.x = window.safeAreaLayoutGuide.layoutFrame.origin.x + 10
+                            alertView.frame.size.width = window.safeAreaLayoutGuide.layoutFrame.size.width - 20
+                            
+            },
+                           completion: nil)
+            NetworkManager().postCreateUser(user) { (user) in
+                DispatchQueue.main.async {
+                    self.users.append(user)
+                    alertView.removeFromSuperview()
+                }
             }
         }
     }
     
     func editUser(user: User, indexPath: IndexPath) {
-        self.users[indexPath.row] = user
-        DispatchQueue.main.async {
-            self.usersTableView.reloadData()
+        if let window = UIApplication.shared.keyWindow {
+            let alertView = NotificationView(frame: CGRect(x: UIScreen.main.bounds.width/2, y: -100, width: 50, height: 100))
+            alertView.layer.cornerRadius = 8
+            alertView.layer.masksToBounds = true
+            alertView.configureMessage("Editing user")
+            window.addSubview(alertView)
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: .curveEaseIn,
+                           animations: {
+                            alertView.frame.origin.y = window.safeAreaInsets.top
+                            alertView.frame.origin.x = window.safeAreaLayoutGuide.layoutFrame.origin.x + 10
+                            alertView.frame.size.width = window.safeAreaLayoutGuide.layoutFrame.size.width - 20
+                            
+            },
+                           completion: nil)
+            NetworkManager().putEditUser(user) { (recievedUser) in
+                DispatchQueue.main.async {
+                    self.users[indexPath.row] = recievedUser
+                    self.usersTableView.reloadData()
+                    alertView.removeFromSuperview()
+                }
+            }
         }
     }
-    
     func displayError() {
         print("error")
     }
-    
-    
+}
+
+extension UsersViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard
+            let selectedIndexPathCell = usersTableView.indexPathForSelectedRow,
+            let selectedCell = usersTableView.cellForRow(at: selectedIndexPathCell)
+                as? UsersTableViewCell,
+            let selectedCellSuperview = selectedCell.superview
+            else {
+                return nil
+        }
+        
+        transition.originFrame = selectedCellSuperview.convert(selectedCell.frame, to: nil)
+        transition.originFrame = CGRect(
+            x: transition.originFrame.origin.x + 20,
+            y: transition.originFrame.origin.y + 20,
+            width: transition.originFrame.size.width - 40,
+            height: transition.originFrame.size.height - 40
+        )
+        
+        transition.presenting = true
+        selectedCell.shadowView.isHidden = true
+        return transition
+    }
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
+    }
 }

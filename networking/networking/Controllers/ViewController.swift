@@ -69,7 +69,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommentsVCId") as! CommentsViewController
-        vc.configure(posts[indexPath.row])
+
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

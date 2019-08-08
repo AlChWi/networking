@@ -10,7 +10,7 @@ import UIKit
 
 class CommentsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var commentNameLabel: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var commentBodyLabel: UILabel!
     
@@ -18,7 +18,7 @@ class CommentsTableViewCell: UITableViewCell {
     
     func configure(comment: Comment) {
         self.comment = comment
-        self.userNameLabel.text = comment.name
+        self.commentNameLabel.text = comment.name
         self.userEmailLabel.text = comment.email
         self.commentBodyLabel.text = comment.body
     }

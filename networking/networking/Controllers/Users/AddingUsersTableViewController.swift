@@ -110,8 +110,8 @@ class AddingUsersTableViewController: UITableViewController {
                 
             }
             self.dismiss(animated: true, completion: nil)
-        default:
-            return
+//        default:
+//            return
         }
     }
     @IBAction func nameTFEditingChanged(_ sender: UITextField) {

@@ -46,20 +46,56 @@ class NetworkManager {
     func postCreatePost(_ post: Post, completionHandler: @escaping (Post) -> Void) {
         guard let url = URL(string: baseURL + APIs.posts.rawValue), let data = try? JSONEncoder().encode(post)
             else { return }
-        let request = MutableURLRequest(url: url)
+        var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.POST.rawValue
         request.httpBody = data
         request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                print(error)
+                print(error?.localizedDescription as Any)
             } else if let resp = response as? HTTPURLResponse, resp.statusCode == 201, let responseData = data {
                 let json = try? JSONSerialization.jsonObject(with: responseData)
-                print(json)
+                print(json as Any)
                 if let responsePost = try? JSONDecoder().decode(Post.self, from: responseData) {
                     completionHandler(responsePost)
                 }
+            }
+        }.resume()
+    }
+    
+    func putEditPost(_ post: Post, complitionHandler: @escaping (Post) -> Void) {
+        guard let url = URL(string: baseURL + APIs.posts.rawValue), let data = try? JSONEncoder().encode(post)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.PUT.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
+                if let responsePost = try? JSONDecoder().decode(Post.self, from: responseData) {
+                    complitionHandler(responsePost)
+                }
+            }
+        }.resume()
+    }
+    
+    func deletePost(_ post: Post, completionhandler: @escaping () -> Void) {
+        guard let url = URL(string: baseURL + APIs.posts.rawValue), let data = try? JSONEncoder().encode(post)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.DELETE.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let _ = data {
+                completionhandler()
             }
         }.resume()
     }
@@ -74,15 +110,51 @@ class NetworkManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                print(error)
+                print(error?.localizedDescription as Any)
             } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
                 let json = try? JSONSerialization.jsonObject(with: responseData)
-                print(json)
+                print(json as Any)
                 if let responseUser = try? JSONDecoder().decode(User.self, from: responseData) {
                     complitionHandler(responseUser)
                 }
             }
         }.resume()
+    }
+    
+    func putEditUser(_ user: User, complitionhandler: @escaping (User) -> Void) {
+        guard let url = URL(string: baseURL + APIs.users.rawValue), let data = try? JSONEncoder().encode(user)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.PUT.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
+                if let responseUser = try? JSONDecoder().decode(User.self, from: responseData) {
+                    complitionhandler(responseUser)
+                }
+            }
+        }.resume()
+    }
+    
+    func deleteUser(_ user: User, complitionHandler: @escaping () -> Void) {
+        guard let url = URL(string: baseURL + APIs.users.rawValue), let data = try? JSONEncoder().encode(user)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.DELETE.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let _ = data {
+                complitionHandler()
+            }
+        }
     }
     
     func getPosts(byId userId: Int, completionHandler: @escaping ([Post]) -> Void) {
@@ -117,6 +189,63 @@ class NetworkManager {
             }
         }.resume()
     }
+    func postCreateComment(_ comment: Comment, completionHandler: @escaping (Comment) -> Void) {
+        guard let url = URL(string: baseURL + APIs.comments.rawValue), let data = try? JSONEncoder().encode(comment)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.POST.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else if let resp = response as? HTTPURLResponse, resp.statusCode == 201, let responseData = data {
+                let json = try? JSONSerialization.jsonObject(with: responseData)
+                print(json as Any)
+                if let responseComment = try? JSONDecoder().decode(Comment.self, from: responseData) {
+                    completionHandler(responseComment)
+                }
+            }
+            }.resume()
+    }
+    
+    func putEditComment(_ comment: Comment, complitionHandler: @escaping (Comment) -> Void) {
+        guard let url = URL(string: baseURL + APIs.comments.rawValue), let data = try? JSONEncoder().encode(comment)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.PUT.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let responseData = data {
+                if let responseComment = try? JSONDecoder().decode(Comment.self, from: responseData) {
+                    complitionHandler(responseComment)
+                }
+            }
+            }.resume()
+    }
+    
+    func deleteComment(_ comment: Comment, completionhandler: @escaping () -> Void) {
+        guard let url = URL(string: baseURL + APIs.comments.rawValue), let data = try? JSONEncoder().encode(comment)
+            else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethods.DELETE.rawValue
+        request.httpBody = data
+        request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else if let resp = response as? HTTPURLResponse, (200..<300).contains(resp.statusCode), let _ = data {
+                completionhandler()
+            }
+            }.resume()
+    }
+    
     func getAllUsers(_ completionHandler: @escaping ([User]) -> Void) {
         if let url = URL(string: "https://jsonplaceholder.typicode.com/users") {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
