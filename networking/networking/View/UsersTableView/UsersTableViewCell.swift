@@ -10,6 +10,7 @@ import UIKit
 
 class UsersTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userProfilePhotoImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userUsernameLabel: UILabel!
     @IBOutlet weak var userPhoneLabel: UILabel!
@@ -27,6 +28,11 @@ class UsersTableViewCell: UITableViewCell {
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 2.5)
         shadowView.layer.shadowOpacity = 0.2
         shadowView.layer.shadowRadius = 10
+        userProfilePhotoImageView.layer.backgroundColor = UIColor.clear.cgColor
+        userProfilePhotoImageView.layer.shadowColor = UIColor.black.cgColor
+        userProfilePhotoImageView.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+        userProfilePhotoImageView.layer.shadowOpacity = 0.2
+        userProfilePhotoImageView.layer.shadowRadius = 5
         
         containerView.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         containerView.layer.cornerRadius = 15.0

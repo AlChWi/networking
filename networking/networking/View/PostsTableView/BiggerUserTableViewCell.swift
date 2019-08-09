@@ -10,6 +10,7 @@ import UIKit
 
 class BiggerUserTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userProfilePhotoImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userUsernameLabel: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
@@ -24,6 +25,11 @@ class BiggerUserTableViewCell: UITableViewCell {
     private var user: User?
 
     func configure(_ user: User) {
+        userProfilePhotoImageView.layer.backgroundColor = UIColor.clear.cgColor
+        userProfilePhotoImageView.layer.shadowColor = UIColor.black.cgColor
+        userProfilePhotoImageView.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+        userProfilePhotoImageView.layer.shadowOpacity = 0.2
+        userProfilePhotoImageView.layer.shadowRadius = 5
         self.user = user
         self.selectionStyle = .none
         self.userNameLabel.layer.cornerRadius = 8

@@ -192,6 +192,7 @@
                 <outlet property="userEmailLabel" destination="Ess-6m-4lr" id="lVM-wm-QS3"/>
                 <outlet property="userNameLabel" destination="omk-ve-QV1" id="0hM-gO-yue"/>
                 <outlet property="userPhoneLabel" destination="49I-t8-OKz" id="zey-ay-PI8"/>
+                <outlet property="userProfilePhotoImageView" destination="Nsh-B6-3Eq" id="UtE-WX-cTS"/>
                 <outlet property="userStreetLabel" destination="QPi-OB-U0L" id="EgL-4a-bJV"/>
                 <outlet property="userUsernameLabel" destination="uYJ-Hb-G4p" id="8jM-cc-Ixc"/>
                 <outlet property="userWebsiteLabel" destination="xEJ-WQ-MJC" id="EFp-yv-4MT"/>
