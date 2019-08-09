@@ -14,6 +14,7 @@ class UsersViewController: UIViewController {
         didSet {
             usersTableView.dataSource = self
             usersTableView.delegate = self
+            usersTableView.tableFooterView = UIView()
             let nib = UINib(nibName: "UsersTableViewCell", bundle: nil)
             usersTableView.register(nib, forCellReuseIdentifier: "userNibCell")
         }
@@ -41,10 +42,16 @@ class UsersViewController: UIViewController {
             
             selectedCell.shadowView.isHidden = false
         }
+                
+        let activityIndicator = UIActivityIndicatorView()
+        view.addSubview(activityIndicator)
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
         
         NetworkManager().getAllUsers() { users in
             DispatchQueue.main.async {
                 self.users = users
+                activityIndicator.stopAnimating()
             }
         }
         refreshControl.addTarget(self, action: #selector(reloadTableData), for: UIControl.Event.valueChanged)
@@ -92,6 +99,7 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = navVC.viewControllers[0] as! PostsViewController
         navVC.transitioningDelegate = self
         vc.configure(users[indexPath.row])
+        navVC.modalPresentationStyle = .fullScreen
     
         self.present(navVC, animated: true)
 //        self.navigationController?.pushViewController(vc, animated: true)

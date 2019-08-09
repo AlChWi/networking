@@ -109,8 +109,8 @@
 			children = (
 				9BAC37C322E90AF600705096 /* TableViewCell.xib */,
 				9BAC37C222E90AF600705096 /* TableViewCell.swift */,
-				FA1ABB3522FB6605003D0048 /* BiggerUserTableViewCell.swift */,
 				FA1ABB3622FB6605003D0048 /* BiggerUserTableViewCell.xib */,
+				FA1ABB3522FB6605003D0048 /* BiggerUserTableViewCell.swift */,
 			);
 			path = PostsTableView;
 			sourceTree = "<group>";

@@ -29,6 +29,7 @@ class BiggerUserTableViewCell: UITableViewCell {
         self.userNameLabel.layer.cornerRadius = 8
         self.userNameLabel.layer.masksToBounds = true
         self.userCompanyNameLabel.layer.cornerRadius = 8
+        self.userCompanyNameLabel.backgroundColor = Constants.UIConstants.appTintColor
         self.userCompanyNameLabel.layer.masksToBounds = true
         self.userNameLabel.text = user.name
         self.userUsernameLabel.text = user.username
