@@ -148,7 +148,12 @@ extension PostsViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         
-        let actionsConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        var actionsConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        if indexPath.row != 0 {
+            return actionsConfig
+        }
+        actionsConfig = UISwipeActionsConfiguration()
         return actionsConfig
     }
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -163,7 +168,12 @@ extension PostsViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         
-        let actionsConfig = UISwipeActionsConfiguration(actions: [editAction])
+        var actionsConfig = UISwipeActionsConfiguration(actions: [editAction])
+        
+        if indexPath.row != 0 {
+            return actionsConfig
+        }
+        actionsConfig = UISwipeActionsConfiguration()
         return actionsConfig
     }
 }
