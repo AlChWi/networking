@@ -65,7 +65,7 @@ class NetworkManager {
     }
     
     func putEditPost(_ post: Post, complitionHandler: @escaping (Post) -> Void) {
-        guard let url = URL(string: baseURL + APIs.posts.rawValue), let data = try? JSONEncoder().encode(post)
+        guard let url = URL(string: NSString.path(withComponents: [baseURL, APIs.posts.rawValue, String(post.id)])), let data = try? JSONEncoder().encode(post)
             else { return }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.PUT.rawValue
@@ -84,7 +84,7 @@ class NetworkManager {
     }
     
     func deletePost(_ post: Post, completionhandler: @escaping () -> Void) {
-        guard let url = URL(string: baseURL + APIs.posts.rawValue), let data = try? JSONEncoder().encode(post)
+        guard let url = URL(string: NSString.path(withComponents: [baseURL, APIs.posts.rawValue, String(post.id)])), let data = try? JSONEncoder().encode(post)
             else { return }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.DELETE.rawValue
@@ -122,7 +122,7 @@ class NetworkManager {
     }
     
     func putEditUser(_ user: User, complitionhandler: @escaping (User) -> Void) {
-        guard let url = URL(string: baseURL + APIs.users.rawValue), let data = try? JSONEncoder().encode(user)
+        guard let url = URL(string: NSString.path(withComponents: [baseURL, APIs.users.rawValue, String(user.id)])), let data = try? JSONEncoder().encode(user)
             else { return }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.PUT.rawValue
@@ -141,7 +141,7 @@ class NetworkManager {
     }
     
     func deleteUser(_ user: User, complitionHandler: @escaping () -> Void) {
-        guard let url = URL(string: baseURL + APIs.users.rawValue), let data = try? JSONEncoder().encode(user)
+        guard let url = URL(string: NSString.path(withComponents: [baseURL, APIs.users.rawValue, String(user.id)])), let data = try? JSONEncoder().encode(user)
             else { return }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.DELETE.rawValue
@@ -211,7 +211,7 @@ class NetworkManager {
     }
     
     func putEditComment(_ comment: Comment, complitionHandler: @escaping (Comment) -> Void) {
-        guard let url = URL(string: baseURL + APIs.comments.rawValue), let data = try? JSONEncoder().encode(comment)
+        guard let url = URL(string: NSString.path(withComponents: [baseURL, APIs.comments.rawValue, String(comment.id)])), let data = try? JSONEncoder().encode(comment)
             else { return }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.PUT.rawValue
@@ -230,7 +230,7 @@ class NetworkManager {
     }
     
     func deleteComment(_ comment: Comment, completionhandler: @escaping () -> Void) {
-        guard let url = URL(string: baseURL + APIs.comments.rawValue), let data = try? JSONEncoder().encode(comment)
+        guard let url = URL(string: NSString.path(withComponents: [baseURL, APIs.comments.rawValue, String(comment.id)])), let data = try? JSONEncoder().encode(comment)
             else { return }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethods.DELETE.rawValue
